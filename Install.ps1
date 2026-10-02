@@ -42,4 +42,4 @@ if (-not $SkipConnection) {
         Write-Output "Add server fusion360 in Settings -> MCP servers, choose Streamable HTTP, URL: $ServerUrl"
     }
 }
-Write-Output 'Restart the desktop app and select Autodesk Fusion 360 in a local Work chat.'
+Write-Output 'Restart the desktop app and select Fusion MCPilot in a local Work chat.'

@@ -2,6 +2,12 @@
 
 # Fusion MCPilot
 
+**Your workshop drone for editable CAD.**
+
+[![Offline checks](https://github.com/jnsanders1983/fusion-mcpilot/actions/workflows/checks.yml/badge.svg)](https://github.com/jnsanders1983/fusion-mcpilot/actions/workflows/checks.yml)
+[![License: MIT](https://img.shields.io/badge/License-MIT-orange.svg)](LICENSE)
+[![Agent Skills](https://img.shields.io/badge/Agent_Skills-portable-00A0A0.svg)](https://agentskills.io/specification)
+
 **A portable AI agent skill for Autodesk Fusion 360 over MCP.** Model with native Fusion features, inspect live CAD state, change parameters, validate geometry, and prepare metric 3D print deliverables with reusable workflows.
 
 Fusion MCPilot connects an agent to **Fusion's existing MCP service**. This repository supplies the skill, recipes, validation, and optional client helpers; it does not install a replacement Fusion MCP server. It is an independent community project, not affiliated with or endorsed by Autodesk, OpenAI, or Prusa Research.
@@ -26,6 +32,8 @@ The optional Windows adapter installs into the existing Codex personal skill loc
 ```
 
 Configure MCP separately in your host. For replacement of an existing installation, pass `-ReplaceSkill`; the installer retains a backup. The stable skill identifier stays `fusion-360-mcp`, while the displayed name is **Fusion MCPilot**.
+
+For macOS or a Linux agent connected to a supported Fusion host, use `sh ./Install.sh --agent claude` (or `cursor` / `codex`). The portable Python installer configures only the skill; see the platform notes in the [installation guide](docs/installation.md).
 
 ## What you can do
 

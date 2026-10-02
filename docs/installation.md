@@ -45,6 +45,22 @@ For another agent, explicitly choose its skill root and skip Codex connection re
 
 An existing installation is preserved unless you pass `-ReplaceSkill`. That switch makes a backup before replacing files. Inspect any local modifications before upgrading. Restart/reload the agent if discovery does not refresh; look for **Fusion MCPilot**, or invoke the stable identifier `$fusion-360-mcp` where supported.
 
+## macOS and Linux agent installer
+
+Autodesk documents Fusion for Windows and macOS; [native Linux installation is unsupported](https://help.autodesk.com/view/fusion360/ENU/?caas=caas%2Fsfdcarticles%2Fsfdcarticles%2FIs-there-any-way-to-install-Fusion-360-in-Linux.html). This installer installs the agent skill, not Fusion or a network tunnel.
+
+From the extracted repository:
+
+```sh
+sh ./Install.sh --agent claude
+sh ./Install.sh --agent cursor
+sh ./Install.sh --agent codex
+```
+
+Choose **one** command for the intended agent. Generic/Codex defaults use `~/.agents/skills`; Claude and Cursor use their personal roots. For a project or another host, pass `--skill-directory /absolute/path/to/skills`. The same installer also runs on Windows as `python Install.py`. Use `--replace` after reviewing an update. It backs up an existing skill into the system temporary directory, checks copied bytes, and preserves files not present in the new source; review obsolete local files manually. It never registers MCP or grants permissions. Configure those in the host.
+
+macOS agents can connect to Fusion on that Mac. Linux agents need an explicitly configured, supported connection to Fusion on Windows/macOS; `127.0.0.1` on Linux does not reach another computer. Shell syntax and isolated installation checks are separate from a live macOS Fusion integration test.
+
 ## Configure this computer
 
 Use the exact endpoint displayed by Fusion. Register it under `fusion360` in your host. `127.0.0.1` refers to the computer executing the connection. A web/cloud agent cannot reach your desktop loopback just because it has this skill. Choose a supported local execution route; do not expose an unauthenticated service publicly.
