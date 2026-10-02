@@ -1,0 +1,15 @@
+__pycache__/
+*.py[cod]
+.venv/
+.env
+work/
+outputs/
+*.zip
+*.f3d
+*.f3z
+*.stl
+*.3mf
+actions.jsonl
+performance.csv
+validation.json
+.DS_Store
