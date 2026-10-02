@@ -1,6 +1,12 @@
 # Fusion MCPilot setup
 
-For complete current installation and other-agent instructions, see `docs/installation.md` in the source repository. The portable distribution retains the agent-neutral setup reference at `fusion-360-mcp/references/portability.md`.
+For complete current installation and other-agent instructions, see the [public installation guide](https://github.com/jnsanders1983/fusion-mcpilot/blob/main/docs/installation.md). The portable distribution retains the agent-neutral setup reference at `fusion-360-mcp/references/portability.md`.
+
+## Portable installer
+
+On macOS, run `sh ./Install.sh --agent claude` (or `cursor` / `codex`) from the extracted package. This calls the standard-library Python installer; Python 3.11+ is required. On Windows you can also use `python Install.py`. Choose one agent root, or specify `--skill-directory <absolute-parent-skills-directory>`. Codex/generic uses `~/.agents/skills`, Claude uses `~/.claude/skills`, and Cursor uses `~/.cursor/skills`. Use `--replace` after reviewing local changes; it backs up existing files into the system temporary folder and preserves files absent from the new source. Configure MCP separately in the host.
+
+The shell installer can install agent resources on Linux, but Autodesk Fusion itself is supported on Windows/macOS. Linux execution requires a supported connection to Fusion on another host; loopback on Linux will not reach that host. The existing Windows PowerShell adapter below retains the desktop setup's legacy `.codex/skills` path. Do not install duplicate copies in multiple roots for the same agent.
 
 This package contains a standard Agent Skills directory and an optional Windows installer for Codex/ChatGPT Work. Other compatible agents can install the complete inner `fusion-360-mcp` directory in their supported skill location. See its `references/portability.md` for agent-neutral runtime configuration. The MCP address and permissions are configured separately on each computer; no credentials or user approvals are packaged.
 
@@ -41,3 +47,4 @@ Open Settings -> MCP servers and update `fusion360` with the URL shown by Fusion
 Fusion must run on the computer used for local execution when using `127.0.0.1`. Hosted ChatGPT web/cloud skill uploads do not by themselves connect to this local endpoint.
 
 Official references: [MCP desktop settings](https://learn.chatgpt.com/docs/extend/mcp), [skills and invocation](https://learn.chatgpt.com/docs/build-skills).
+
