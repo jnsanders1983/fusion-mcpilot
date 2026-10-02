@@ -47,4 +47,3 @@ Open Settings -> MCP servers and update `fusion360` with the URL shown by Fusion
 Fusion must run on the computer used for local execution when using `127.0.0.1`. Hosted ChatGPT web/cloud skill uploads do not by themselves connect to this local endpoint.
 
 Official references: [MCP desktop settings](https://learn.chatgpt.com/docs/extend/mcp), [skills and invocation](https://learn.chatgpt.com/docs/build-skills).
-

@@ -1,6 +1,6 @@
 ---
 name: fusion-360-mcp
-license: MIT (see LICENSE in the distribution root)
+license: MIT (see LICENSE)
 description: Inspect, model, and improve Autodesk Fusion designs through MCP. Use for geometry, sketches, parameters, assemblies, manufacturing preparation, and Fusion capability or extension guidance. Electronics inspection requires an Electronics document.
 compatibility: Requires Autodesk Fusion with its MCP service and an agent with local MCP or script execution access. Optional command helpers require Python 3.11+ and HTTP(S) access to Fusion.
 ---

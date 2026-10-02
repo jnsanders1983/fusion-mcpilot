@@ -37,6 +37,10 @@ For macOS or a Linux agent connected to a supported Fusion host, use `sh ./Insta
 
 ## What you can do
 
+![Parametric bit dock modeled in Fusion with separate teal rack and graphite foundation](docs/images/parametric-bit-dock.png)
+
+*A real workflow example: constrained parametric modeling, separate solid color regions, and metric print preparation. Fusion viewport capture; physical print testing remains open.*
+
 | Workflow | Implementation and verification |
 | --- | --- |
 | Primitives | Native sphere, torus, cone, cylinder and frustum; live solid, bounds, volume and health checks |
