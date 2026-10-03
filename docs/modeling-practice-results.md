@@ -10,7 +10,7 @@ The objective was to practice explicit design intent before attempting the refer
 | Mirrored gusset bracket | Four variants; common mounting datum, constrained base/wall/gusset, one solid, bounds, volume, healthy features | Passed after correcting wall sketch direction |
 | Linked guide-rail loft | Four variants with scale 0.4 through 1.4; fully constrained sections and projected rail, rail endpoint attachment, solid closure, analytic frustum volume | Passed; free ends, no G1/G2 claim |
 | Guided carriage | Native as-built slider, grounded guide, 0/10/25/40/55 mm travel and return; signed world displacement, zero interference, 0.5 mm measured clearance | Passed after correcting joint occurrence order |
-| Curvature-continuous surface transition | Circular BRep-edge sections, documented smooth-end condition on input and on created feature | Failed: installed API rejected the condition; G2 remains unverified |
+| Curvature-continuous surface transition | Initially supplied raw circular BRep-edge sections | Initial attempt failed; subsequent Path-based input corrected creation. Strict sampled curvature acceptance still failed; see follow-up below |
 
 ## Corrections that mattered
 
@@ -18,7 +18,13 @@ The bracket's first wall was placed below its base because local sketch Y did no
 
 The carriage initially moved in the negative world direction. An absolute-distance check would have accepted its travel. Minimum distance revealed it had left the guide. Reversing joint occurrence order produced the intended signed movement and preserved clearance throughout the tested range.
 
-The surface experiment did not achieve a smooth/G2 end condition. BRepEdge types were confirmed by live inspection; both the input and created-feature editing routes failed with the same API error. No custom surface generator was substituted. This is a reproducible limitation of the tested case, not a universal conclusion about Fusion's surface tools.
+The first surface experiment did not achieve a smooth/G2 end condition. Although BRepEdge types were confirmed by inspection, the section-add method's full contract was initially missed: it specifies a Path rather than a raw edge. Native Path sections corrected the creation error in the follow-up. The earlier API-limitation interpretation is withdrawn. No custom surface generator was substituted.
+
+### One-hour follow-up
+
+On October 3, native Paths wrapping the boundary edges enabled smooth-end conditions. Four variants were tested at 72 seam samples each. Normals matched (minimum absolute dot product approximately 0.9999999999999998). Circumferential curvature matched to floating-point precision. Maximum other principal-curvature residuals ranged from approximately 0.000027 to 0.000048 per mm, exceeding the original strict threshold of 0.000001 per mm. Native smooth-end construction is demonstrated; strict sampled G2 acceptance is not.
+
+A separate native sketch-symmetry test passed 25 seeded parameter variants, preserving fully constrained sketches, symmetric center offsets, equal radii, two solids and analytic cylinder volume. It used one driving diameter and one driving offset, construction geometry and a symmetry constraint rather than independently dimensioning both circles.
 
 ## Native scope and remaining work
 
