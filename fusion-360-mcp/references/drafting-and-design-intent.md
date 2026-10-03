@@ -34,6 +34,18 @@ Read before reconstructing a dimensioned drawing or planning a mechanical featur
 
 Test coverage is recorded in the repository's `docs/modeling-practice-results.md`. The exercises validate bounded cases; exact vise reconstruction and manufacturing acceptance remain separate tasks.
 
+### Preserve dimension-reference semantics
+
+A drawing's edge offset and its hole-to-hole pitch are separate controls. In the Autodesk counterbore exercise, 10 mm from the left edge plus 45 mm pitch gives columns at 10 and 55 mm; increasing the base width alone must not recenter those columns. Five independent edit checks demonstrated that width leaves hole locations unchanged, pitch moves the second column only, and seed offset moves both columns. Encode these relationships explicitly instead of automatically substituting symmetry or equal edge margins.
+
+Use native Hole and Pattern for counterbores. Independently inspect cylindrical radii, centers and axial intervals, including the remaining thickness below a counterbore; a successful feature does not establish correct cut depth. Twenty-two variants passed rounded-base volume and four-counterbore geometry checks. The source drawing leaves the raised ridge width/location unspecified, so this is a verified base subset, not an exact reconstruction of the whole drawing. Keep assumptions separate from explicit and derived dimensions.
+
+Blind drilled depth and total tip depth differ. In a native Hole coupon, a 5 mm diameter, 8 mm cylindrical depth and 118 degree included drill angle produced another 1.502 mm of conical tip depth. A 180 degree drill point produced a flat bottom. For a countersink, derive axial depth from both radii and the included angle: `(outer_radius - hole_radius) / tan(included_angle / 2)`. Nineteen variants passed axial face intervals and independent cylinder/cone/frustum volume checks. Specify the depth convention and included angle in the dimension ledger; do not confuse countersink diameter, counterbore depth and drill shoulder depth. Use native Hole features rather than custom cut approximations.
+
+An assembly envelope drawing and exploded parts list are not a complete set of manufacturing drawings. A jaw opening dimension can describe the depicted pose rather than maximum motion. Mounting-hole pitch is not the outside base dimension, and a visually symmetric assembly can contain intentionally different part extents. Obtain missing per-part values from separately identified CAD measurement evidence or the user; do not assign generic fillets or invented guide clearance and claim exact reconstruction.
+
+Chamfer offsets refer to adjacent surfaces, not automatically to globally named axes. A two-distance cylindrical-edge exercise passed 20 variants and four flip checks: this edge's first offset was radial and second axial, and flipping swapped them. Verify which surface receives each offset from actual geometry before interpreting a drawing; equal offsets imply 45 degrees only for perpendicular adjacent faces. Use current `ChamferFeatures.createInput2` and its `chamferEdgeSets`; inspect the completed feature through `edgeSets`. Input and finished-feature property names differ. Follow the documented timeline position when editing an edge set.
+
 ## Progress from simple to advanced techniques
 
 1. Centered plate: fully constrained rectangle, datum-linked construction, seed hole and native feature mirror; verify analytic volume and changed sizes.

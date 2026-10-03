@@ -30,6 +30,10 @@ Following Nick's direction to prioritize fundamentals, a datum-based D profile p
 
 ## Native scope and remaining work
 
+The Autodesk educational counterbore drawing's fully specified base subset passed 22 variants: native corner fillets, one native counterbore Hole and a two-direction feature Pattern. Independent checks covered four cylindrical center pairs, radii, axial intervals, one solid, constrained sketches, healthy features and analytic rounded-base-minus-holes volume (maximum error approximately 1.5e-10 cubic mm). Pattern creation, validation and checkpoint took 4.513 seconds. Five additional independent edits demonstrated edge-offset versus pitch semantics in 0.324 seconds. The raised ridge was omitted because its width/location are not dimensioned; no full reconstruction is claimed. A negative-direction Hole attempt failed; after live inspection a positive natural-direction input succeeded. Direction and participant selection changed together, so the failure cause has not been isolated.
+
+Drawing source: [Autodesk educational direct-modeling exercise](https://files.upskill-dev.autodesk.com/public/aex/fusion/Sketching_Part_Modeling_2026/260201_M1-CE_Direct-modeling.pdf). The source PDF and interpreted dimension ledger remain local practice references.
+
 The gussets use dimensioned triangle extrusions with symmetric thickness and a native feature mirror. They are not native Rib features: the installed RibFeatures API exposed no creation method. The application UI capability remains distinct from automation coverage.
 
 The guide rail uses linked projection through `project2`, rather than fixed coordinates. This exercise validates a straight-rail transition. Curved rails, multiple rails, surface stitching/thickening, independently measured G1/G2 continuity, broader parameter sweeps and full mechanism dimensional variations remain future work.
@@ -37,6 +41,10 @@ The guide rail uses linked projection through `project2`, rather than fixed coor
 The downloaded vise PDF and STEP remain reference assets. The retired approximate vise attempts are not used as templates or evidence. No cloud save or public publication occurred during practice.
 
 ## Timing
+
+Additional fundamentals: native Hole coupon passed 19 variants, independently checking blind cylindrical depth plus drill tip and through countersink cone/frustum volume. Corrected creation took 0.612 s; verification/checkpoint 1.677 s. A second sketch-point vertical dimension was rejected; inspected state and explicitly aligned the shared row with a HorizontalPoints constraint. The precise solver cause of the rejected dimension was not isolated. Native two-distance chamfer passed 20 offset/size variants in 0.717 s plus four flipped/unflipped checks in 0.072 s. Creation had succeeded before an inspection property typo raised an exception; live inspection confirmed geometry, and no modifying script was replayed.
+
+Both preserved vise PDF pages were visually reread without rebuilding: envelope dimensions, hole pitch, depicted opening and exploded component identities were distinguished from missing per-part manufacturing dimensions. Detailed ledger remains local. STEP measurement is still needed for missing guide clearances, fillets and thread specifications.
 
 Successful in-Fusion operations, including their scoped verification/checkpoint work: revolved spacer 1.355 s; flange creation 0.363 s plus parameter validation 0.602 s; corrected bracket 1.721 s; linked loft creation 0.379 s plus parameter validation 0.404 s; corrected slider test 0.912 s. Surface failure record/checkpoint 0.357 s.
 
