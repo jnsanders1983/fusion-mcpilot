@@ -23,6 +23,8 @@ The recipe verifies solid geometry, bounding dimensions, analytic volume, featur
 
 For dimensioned drawings and mechanical feature planning, read [drafting and design intent](references/drafting-and-design-intent.md). Identify functional datums, record dimension evidence, and express symmetry with construction geometry, constraints and native mirrors/patterns. Verify behavior under parameter changes before calling a reconstruction faithful.
 
+For learning and practice, use a focused research-build-check-retain cycle. Reuse demonstrated contracts while applicable, cover distinct concepts, and start with nominal and meaningful boundary cases. Expand research or randomized testing for actual uncertainty or failures. Avoid idle gaps during an authorized practice window. Measure overall progress separately from native operation speed; see the efficient-learning section in drafting and design intent.
+
 For verified extrude, shell, fillet/chamfer, boolean, loft, straight sweep, revolve and hole-pattern families, use [native feature tools](references/native-features.md). That reference also covers general user-parameter edits with verified rollback, assembly instance inspection, minimum distance/interference, local checkpoints and fresh-model regression tests. Reuse the tested helper when its contract fits; inspect unfamiliar geometry before adapting it.
 
 For size-adaptive regular socket grids, use [native parametric organizer](references/parametric-organizer.md). Overall dimensions and pitch drive centered grid counts through fully constrained sketches and native feature patterns; validate live regenerated geometry after parameter changes.

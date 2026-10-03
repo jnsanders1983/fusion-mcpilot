@@ -38,6 +38,8 @@ The gussets use dimensioned triangle extrusions with symmetric thickness and a n
 
 The guide rail uses linked projection through `project2`, rather than fixed coordinates. This exercise validates a straight-rail transition. Curved rails, multiple rails, surface stitching/thickening, independently measured G1/G2 continuity, broader parameter sweeps and full mechanism dimensional variations remain future work.
 
+Subsequent limited surface tests stitched three surfaces and thickened them after rebinding a created thickness expression. End-cylinder wall checks passed five variants, but global wall verification and an isolated creation-expression reproduction remain unresolved. The original strict sampled axial-curvature threshold still fails. Advanced work was deferred when Nick prioritized fundamentals.
+
 The downloaded vise PDF and STEP remain reference assets. The retired approximate vise attempts are not used as templates or evidence. No cloud save or public publication occurred during practice.
 
 ## Timing
@@ -45,6 +47,8 @@ The downloaded vise PDF and STEP remain reference assets. The retired approximat
 Additional fundamentals: native Hole coupon passed 19 variants, independently checking blind cylindrical depth plus drill tip and through countersink cone/frustum volume. Corrected creation took 0.612 s; verification/checkpoint 1.677 s. A second sketch-point vertical dimension was rejected; inspected state and explicitly aligned the shared row with a HorizontalPoints constraint. The precise solver cause of the rejected dimension was not isolated. Native two-distance chamfer passed 20 offset/size variants in 0.717 s plus four flipped/unflipped checks in 0.072 s. Creation had succeeded before an inspection property typo raised an exception; live inspection confirmed geometry, and no modifying script was replayed.
 
 Both preserved vise PDF pages were visually reread without rebuilding: envelope dimensions, hole pitch, depicted opening and exploded component identities were distinguished from missing per-part manufacturing dimensions. Detailed ledger remains local. STEP measurement is still needed for missing guide clearances, fillets and thread specifications.
+
+Aligned/angular/driven-reference fundamentals passed 17 acute-angle cases: creation 0.885 s and verification/checkpoint 0.597 s. Native straight-slot comparison covered three definitions at nominal/two boundaries/restoration, 12 shape instances: creation 1.118 s, correction 0.207 s and verification/checkpoint 0.637 s. Native curved slot covered nominal/two boundaries/restoration: creation 0.926 s, correction 0.099 s and verification/checkpoint 0.490 s. Both slot families required expression rebinding and additional reference constraints in Fusion 2705.1.25. Curved-slot radial direction and sweep were separately controlled. No custom slot generator was introduced. Native volumes and signed centers/radii were checked independently; these cases do not demonstrate all slot configurations.
 
 Successful in-Fusion operations, including their scoped verification/checkpoint work: revolved spacer 1.355 s; flange creation 0.363 s plus parameter validation 0.602 s; corrected bracket 1.721 s; linked loft creation 0.379 s plus parameter validation 0.404 s; corrected slider test 0.912 s. Surface failure record/checkpoint 0.357 s.
 
