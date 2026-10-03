@@ -13,3 +13,13 @@ Save only on an express request. Closing a modified user document requires their
 An error or timeout can leave partial changes. Inspect before retrying. Undo/redo applies to the most recent transaction; use only a known relevant transaction or an explicit user request.
 
 For Electronics confirm an active Electronics document, discover its entity types/schema resources, and follow returned pagination. Do not use CAD casts against an Electronics document.
+
+## Native Derive and imported references
+
+Use native `rootComponent.features.deriveFeatures` for a supported linked derivation workflow. Inspect the installed contract: `createInput(sourceDesign)`, `sourceEntities`, `excludedEntities` and `isPlaceObjectsAtOrigin`. Saving to a Fusion cloud location requires a user-selected or user-authorized destination.
+
+In Fusion 2705.1.25, Derive rejected an unsaved imported STEP source with `Cannot derive from a design that has no recorded changes`. Adding a native datum sketch did not resolve it; saving the source did, and the subsequent Derive feature was healthy. Do not treat that message as proof that another sketch is needed, automatically replay the failed mutation, or invent a custom replacement. Inspect partial state, check the source save state, and resolve authorized storage. This is a bounded observed requirement, not a claim about every source type/version.
+
+Whole-root derivation preserved 26 solid instances, their volumes and translations in this demonstration. It also retained rigid groups; adding duplicate groups was rejected as overconstrained. Inspect constraints in nested components as well as the root before adding assembly relationships. Motion was verified in the source, not in the derived copy. Volume/position comparisons do not establish full surface equivalence.
+
+Label imported/derived geometry accurately. Reusing reference castings is not reconstructing their editable feature history from a technical drawing. Keep source evidence, newly modeled features, inherited geometry, motion acceptance and remaining limitations distinct.

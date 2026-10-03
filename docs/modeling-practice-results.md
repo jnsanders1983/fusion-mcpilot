@@ -63,3 +63,7 @@ These numbers exclude research, assistant reasoning, failed attempts and MCP tra
 - [Surface continuity analysis](https://help.autodesk.com/cloudhelp/ENU/Fusion-Model/files/GUID-3F8BA6D3-5DF2-49FA-BE7D-8CCEF718C795.htm)
 
 Live installed API documentation was also queried for mirror, symmetric extrusion, slider joints, linked projection, guide rails and surface evaluators. See the skill's drafting-and-design-intent reference for the maintained decision guidance.
+
+## Whole-vise demonstration review
+
+See [vise demonstration lessons](vise-demonstration-lessons.md) for saved-source native Derive, inherited constraints, signed slider checks and the distinction between reference reuse and feature reconstruction.
