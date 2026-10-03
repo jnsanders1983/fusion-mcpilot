@@ -1,0 +1,45 @@
+# Native modeling practice — October 3, 2026
+
+The objective was to practice explicit design intent before attempting the reference vise again. These are native Fusion tests performed through MCP, with independently calculated geometric expectations. They are not a claim of mastery, exact reconstruction or manufacturing approval. CAD archives and detailed JSON measurements remain in the local practice workspace, outside the portable skill.
+
+| Exercise | Validation | Result |
+| --- | --- | --- |
+| Origin-centered plate, earlier session | Four variants; fully constrained sketches, datum position, native mirrored holes, analytic volume | Passed after adding explicit rectangle constraints |
+| Stepped revolved spacer | Four variants; section fully constrained, measured cylindrical radii, datum end, length, annular section volume, healthy feature | Passed |
+| Circular hole flange | Four variants with 6, 8 and 12 holes; fully constrained seed, native pattern, live hole coordinates/count, analytic volume | Passed |
+| Mirrored gusset bracket | Four variants; common mounting datum, constrained base/wall/gusset, one solid, bounds, volume, healthy features | Passed after correcting wall sketch direction |
+| Linked guide-rail loft | Four variants with scale 0.4 through 1.4; fully constrained sections and projected rail, rail endpoint attachment, solid closure, analytic frustum volume | Passed; free ends, no G1/G2 claim |
+| Guided carriage | Native as-built slider, grounded guide, 0/10/25/40/55 mm travel and return; signed world displacement, zero interference, 0.5 mm measured clearance | Passed after correcting joint occurrence order |
+| Curvature-continuous surface transition | Circular BRep-edge sections, documented smooth-end condition on input and on created feature | Failed: installed API rejected the condition; G2 remains unverified |
+
+## Corrections that mattered
+
+The bracket's first wall was placed below its base because local sketch Y did not equal world Z. All its sketches were fully constrained, yet its bounds and volume were wrong. The corrected branch passed the same checks across size changes.
+
+The carriage initially moved in the negative world direction. An absolute-distance check would have accepted its travel. Minimum distance revealed it had left the guide. Reversing joint occurrence order produced the intended signed movement and preserved clearance throughout the tested range.
+
+The surface experiment did not achieve a smooth/G2 end condition. BRepEdge types were confirmed by live inspection; both the input and created-feature editing routes failed with the same API error. No custom surface generator was substituted. This is a reproducible limitation of the tested case, not a universal conclusion about Fusion's surface tools.
+
+## Native scope and remaining work
+
+The gussets use dimensioned triangle extrusions with symmetric thickness and a native feature mirror. They are not native Rib features: the installed RibFeatures API exposed no creation method. The application UI capability remains distinct from automation coverage.
+
+The guide rail uses linked projection through `project2`, rather than fixed coordinates. This exercise validates a straight-rail transition. Curved rails, multiple rails, surface stitching/thickening, independently measured G1/G2 continuity, broader parameter sweeps and full mechanism dimensional variations remain future work.
+
+The downloaded vise PDF and STEP remain reference assets. The retired approximate vise attempts are not used as templates or evidence. No cloud save or public publication occurred during practice.
+
+## Timing
+
+Successful in-Fusion operations, including their scoped verification/checkpoint work: revolved spacer 1.355 s; flange creation 0.363 s plus parameter validation 0.602 s; corrected bracket 1.721 s; linked loft creation 0.379 s plus parameter validation 0.404 s; corrected slider test 0.912 s. Surface failure record/checkpoint 0.357 s.
+
+These numbers exclude research, assistant reasoning, failed attempts and MCP transport. Prompt-to-result latency was not measured. They must not be presented as total user wait time.
+
+## Sources
+
+- [Autodesk revolve](https://help.autodesk.com/cloudhelp/ENU/Fusion-Model/files/GUID-D74BB28A-9570-43AD-97A4-E094021C036B.htm)
+- [Autodesk native mirror](https://help.autodesk.com/cloudhelp/ENU/Fusion-Model/files/GUID-77CE43FF-47C6-429A-B872-BA80B348CCC3.htm)
+- [Autodesk surface loft](https://help.autodesk.com/cloudhelp/ENU/Fusion-Patch/files/SFC-REF-LOFT-DLG.htm)
+- [Smooth-end API method](https://help.autodesk.com/cloudhelp/ENU/Fusion-360-API/files/LoftSection_setSmoothEndCondition.htm)
+- [Surface continuity analysis](https://help.autodesk.com/cloudhelp/ENU/Fusion-Model/files/GUID-3F8BA6D3-5DF2-49FA-BE7D-8CCEF718C795.htm)
+
+Live installed API documentation was also queried for mirror, symmetric extrusion, slider joints, linked projection, guide rails and surface evaluators. See the skill's drafting-and-design-intent reference for the maintained decision guidance.

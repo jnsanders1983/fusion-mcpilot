@@ -18,6 +18,18 @@ Read before reconstructing a dimensioned drawing or planning a mechanical featur
 - Validate native API-created constraints explicitly. The practice test found that `addCenterPointRectangle` produced four lines with no geometric constraints in the installed API. Numeric placement at the origin did not prevent translation during dimension edits. Add required horizontal/vertical and midpoint/coincident relationships and inspect `isFullyConstrained`.
 - Test changes to width, height, thickness, hole pitch and diameter independently. Require preserved datum position, intended symmetry, solid count and feature health. A fully constrained sketch can still express the wrong intent; inspect the resulting geometry.
 
+## Lessons from representative native tests
+
+- Sketch coordinates are local to their plane. In the installed environment, positive local Y on an XZ sketch pointed toward negative world Z. Inspect `sketchToModelSpace`/`modelToSketchSpace` or the resulting world bounds; do not infer a wall's direction from the plane name. A constrained wall below its mounting base passed sketch checks and failed geometric acceptance.
+- An axial section can encode concentric diameters and shoulder lengths with horizontal/vertical constraints, datum-referenced dimensions and a construction revolution axis. Validate each cylindrical radius and the stepped annular volume after edits, not just the overall envelope.
+- A repeated hole is one seed feature plus a native pattern. When quantities or pitch change, inspect the resulting cylindrical face centers and count. A healthy pattern object alone does not prove every hole was regenerated in the intended position.
+- Link guide-rail endpoints to section geometry with `Sketch.project2(..., True)` where appropriate. Validate the linked endpoints after both shrinking and enlarging sections. A straight-rail loft with free ends demonstrates rail attachment, not G1/G2 continuity.
+- Native Rib exists in the application, but the installed `RibFeatures` API exposes enumeration without a creation method. A dimensioned triangular gusset made by native extrude and feature mirror is an explicit alternative with different edit semantics; do not label it a Rib feature or claim API coverage proves UI coverage.
+- Joint occurrence order affects signed world motion. Validate the stationary occurrence, signed carriage translation, containment within the guide, minimum clearance and interference. Testing only absolute travel can accept a carriage moving out of its guide.
+- Surface loft smooth/tangent end conditions require adjacent BRep edges according to the API contract. In the circular-edge surface experiment, `setSmoothEndCondition` rejected BRepEdge sections both before creation and during a timeline-positioned edit. Record this as a case-specific failure, not proof that all G2 lofts are unsupported. No G2 acceptance was achieved in that test. Validate continuity with surface normals/curvature or native analysis when the operation succeeds; a smooth-looking surface is insufficient.
+
+Test coverage is recorded in the repository's `docs/modeling-practice-results.md`. The exercises validate bounded cases; exact vise reconstruction and manufacturing acceptance remain separate tasks.
+
 ## Progress from simple to advanced techniques
 
 1. Centered plate: fully constrained rectangle, datum-linked construction, seed hole and native feature mirror; verify analytic volume and changed sizes.
@@ -37,3 +49,6 @@ Promote a technique from researched to demonstrated only after its representativ
 - [NIST introduction to GD&T](https://www.nist.gov/publications/fundamentals-geometric-dimensioning-and-tolerancing-part-ii)
 - [Autodesk loft guide rails](https://www.autodesk.com/support/technical/article/caas/sfdcarticles/sfdcarticles/How-to-create-a-Loft-with-guide-rails-in-Fusion.html)
 - [Autodesk sweep reference](https://help.autodesk.com/cloudhelp/ENU/Fusion-Model/files/SLD-REF-SWEEP.htm)
+- [Native surface loft end conditions](https://help.autodesk.com/cloudhelp/ENU/Fusion-Patch/files/SFC-REF-LOFT-DLG.htm)
+- [Smooth-end API contract](https://help.autodesk.com/cloudhelp/ENU/Fusion-360-API/files/LoftSection_setSmoothEndCondition.htm)
+- [Zebra continuity analysis](https://help.autodesk.com/cloudhelp/ENU/Fusion-Model/files/GUID-3F8BA6D3-5DF2-49FA-BE7D-8CCEF718C795.htm)
