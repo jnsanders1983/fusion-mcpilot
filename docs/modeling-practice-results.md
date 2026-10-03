@@ -26,6 +26,8 @@ On October 3, native Paths wrapping the boundary edges enabled smooth-end condit
 
 A separate native sketch-symmetry test passed 25 seeded parameter variants, preserving fully constrained sketches, symmetric center offsets, equal radii, two solids and analytic cylinder volume. It used one driving diameter and one driving offset, construction geometry and a symmetry constraint rather than independently dimensioning both circles.
 
+Following Nick's direction to prioritize fundamentals, a datum-based D profile passed 21 dimensional variants. Horizontal/vertical, midpoint and two tangent constraints define the profile; center distance and arc radius drive it through construction geometry. An attempted redundant horizontal constraint on the centerline was rejected. Live inspection identified the implied alignment, and the test continued without removing the tangent constraints. Independent checks covered full constraint, one solid, signed datum bounds, perpendicular radius/tangent vectors, feature health and rectangle-plus-semicircle volume. Successful execution, verification and checkpoint took 1.463 seconds; failed setup and research are excluded.
+
 ## Native scope and remaining work
 
 The gussets use dimensioned triangle extrusions with symmetric thickness and a native feature mirror. They are not native Rib features: the installed RibFeatures API exposed no creation method. The application UI capability remains distinct from automation coverage.
