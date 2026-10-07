@@ -90,3 +90,5 @@ Every Fusion operation should report execution-and-verification time with its sc
 ## License and branding
 
 Code and documentation are provided under [MIT](LICENSE). The original MCPilot mascot was generated for this project and is included under the same project license, subject to any applicable rights. Autodesk and Fusion are their owners' trademarks; the mascot is not an Autodesk logo. Do not imply official endorsement.
+
+[![M8ven Score](https://m8ven.ai/badge/mcp/jnsanders1983-fusion-mcpilot-u3pyuq?v=fc6c527aeb29d50cf2422270e970bc0f)](https://m8ven.ai/mcp/jnsanders1983-fusion-mcpilot-u3pyuq?s=readme)
