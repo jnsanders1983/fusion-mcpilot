@@ -12,4 +12,21 @@ Run `inspect_design.py` for recovery inventory. It never edits, fits the view, o
 
 The supported bounded feature families, parameter rollback and occurrence-aware measurements are documented in [native features](native-features.md). Further expansion should address arbitrary profile/path selection, joints, targeted existing-body edits and manufacturing contracts. Each added operation needs a valid live case, rejected invalid inputs, and an appropriate failure/recovery test. Do not advertise unimplemented recipes as supported tools.
 
+Entity tokens are lookup handles, not persistent identity strings. Resolve them
+through `findEntityByToken` before comparing entities; do not deduplicate a live
+inventory solely by comparing tokens. Confirm a collection's inclusion and
+uniqueness contract before changing component traversal.
+
+For temporary-document cleanup, retain the exact run-owned document object and
+check `Document.close(False)`'s boolean result. Failed closure is a cleanup
+failure. Check reactivation separately when restoring the original document.
+Record remaining run-owned documents; names alone do not establish ownership.
+
+Retain evidence by scope: official contracts are documented claims, offline mocks
+prove only their modeled branches, and live measurements establish the tested
+native case. Keep user observations separate. Expression, health, bounds and
+volume restoration checks do not prove full topology identity. Research-only
+resolutions remain unvalidated until tested live. Record actual active blocks
+and observed gaps; scheduled wakeups do not establish continuous execution.
+
 Add-in work, rather than skill-folder changes, is required for a GUI job queue with per-request response channels, queue/run timing, cancellation-before-start, non-GUI health checks, and persistent completion/deduplication records. A client timeout cannot stop already-running Fusion code. Do not disable modal guards to gain throughput.

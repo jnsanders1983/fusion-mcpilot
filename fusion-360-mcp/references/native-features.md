@@ -32,6 +32,30 @@ hole centers inside one execution. Deferred sketch computation is always restore
 before profile access and feature creation. Invalid inputs fail before dispatch.
 Creation refuses an existing document name; inspect partial state before retrying.
 
+## API input acceptance and compatibility
+
+Check documented return types when configuring feature inputs.
+`ExtrudeFeatureInput.setOneSideExtent` and `ConstructionPlaneInput.setByOffset`
+return success booleans. On false, stop before adding the feature or plane and
+inspect the partial document. Absence of an exception does not prove acceptance.
+
+New constant-radius fillet code should use
+`input.edgeSetInputs.addConstantRadiusEdgeSet(edges, radius, isTangentChain)`.
+It returns a `ConstantRadiusFilletEdgeSetInput`, unlike the boolean returned by
+the retired `FilletFeatureInput.addConstantRadiusEdgeSet`. Check the returned
+object before creating the feature and independently verify geometry and health.
+
+These are documented contracts, not newly live-verified migrations. Some bundled
+recipes still contain unchecked setup calls or the retired fillet method.
+Inspect the selected helper before adapting it. Validate any migration with
+nominal geometry, meaningful parameter boundaries and restoration in isolated
+Fusion documents before transferring live acceptance claims.
+
+Sources: Autodesk's [extent contract](https://help.autodesk.com/cloudhelp/ENU/Fusion-360-API/files/fusion_ExtrudeFeatureInput_setOneSideExtent.htm),
+[plane contract](https://help.autodesk.com/cloudhelp/ENU/Fusion-360-API/files/fusion_ConstructionPlaneInput_setByOffset.htm),
+[retired fillet method](https://help.autodesk.com/cloudhelp/ENU/Fusion-360-API/files/fusion_FilletFeatureInput_addConstantRadiusEdgeSet.htm)
+and [edge-set method](https://help.autodesk.com/cloudhelp/ENU/Fusion-360-API/files/fusion_FilletEdgeSetInputs_addConstantRadiusEdgeSet.htm).
+
 ## Existing user parameters
 
 `scripts/parameters.py --document "Design" --log-dir <records>` inspects numeric
