@@ -7,6 +7,7 @@
 [![Offline checks](https://github.com/jnsanders1983/fusion-mcpilot/actions/workflows/checks.yml/badge.svg)](https://github.com/jnsanders1983/fusion-mcpilot/actions/workflows/checks.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-orange.svg)](LICENSE)
 [![Agent Skills](https://img.shields.io/badge/Agent_Skills-portable-00A0A0.svg)](https://agentskills.io/specification)
+[![M8ven Score](https://m8ven.ai/badge/mcp/jnsanders1983/fusion-mcpilot)](https://m8ven.ai/mcp/jnsanders1983/fusion-mcpilot?s=readme)
 
 **A portable AI agent skill for Autodesk Fusion 360 over MCP.** Model with native Fusion features, inspect live CAD state, change parameters, validate geometry, and prepare metric 3D print deliverables with reusable workflows.
 
