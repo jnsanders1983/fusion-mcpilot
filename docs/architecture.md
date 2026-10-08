@@ -1,5 +1,17 @@
 # Architecture and source ownership
 
+This package does not define or host MCP server tools. Autodesk Fusion's separate
+service supplies the live tool schemas; the agent discovers them at connection
+time. The optional client transmits requests and supports configured authentication.
+Host permissions and server controls remain authoritative. The skill does not
+install a scraper, scheduler, or autonomous learning service.
+
+Offline tests live in `tests/`; packaging and local security inventory live in
+`devtools/`. They are excluded from the install unit. The release file allowlist
+is `devtools/release-files.json`; additions require review. The live acceptance
+suite stays optional in the skill because it checks native CAD behavior and needs
+explicit disposable documents. It never runs as part of offline CI.
+
 The repository is the editable source of truth. `fusion-360-mcp/` is the portable install unit. Personal agent skill folders are runtime copies. The release ZIP is generated from an explicit selection of this skill, installer, setup guide and license; Git metadata, private work records and repository automation are excluded.
 
 The agent loads `SKILL.md` first, then only task-relevant references. Recipes construct scripts using data serialized as JSON, execute supported Fusion API operations, and inspect live results. The optional standard-library client handles HTTP MCP when the host does not expose native tools. Settings remain external. Modifying requests are not automatically replayed.

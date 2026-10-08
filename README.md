@@ -77,11 +77,11 @@ Machine addresses, credentials, approval preferences, CAD projects and execution
 Python helpers use the standard library, Python 3.11+. Use a maintained, patched runtime; XML validation additionally requires Expat 2.7.2 or later.
 
 ```sh
-python -B -m unittest discover -s fusion-360-mcp/scripts -p '*test*.py'
-python -B fusion-360-mcp/scripts/package_skill.py --package-root . --skill-name fusion-360-mcp --zip-path fusion-mcpilot.zip
+python -B -m unittest discover -s tests -p 'test_*.py'
+python -B devtools/package_skill.py --package-root . --skill-name fusion-360-mcp --zip-path fusion-mcpilot.zip
 ```
 
-Offline checks do not require Fusion. Live tests require a supported Fusion host and explicit disposable documents. [Contributing](CONTRIBUTING.md) · [Security](SECURITY.md) · [Changes](CHANGELOG.md).
+Offline checks do not require Fusion. Tests and release/security inventory utilities live in repository-only `tests/` and `devtools/`. Releases include only files approved in `devtools/release-files.json`; use a fresh archive filename. Installation remains a separate operation through the backup-aware installer. Live acceptance benchmarks are optional, require a supported Fusion host and explicit disposable documents, and are never part of offline CI. [Contributing](CONTRIBUTING.md) · [Security](SECURITY.md) · [Privacy](PRIVACY.md) · [Changes](CHANGELOG.md).
 
 ## Performance
 

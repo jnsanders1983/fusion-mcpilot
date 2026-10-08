@@ -1,4 +1,8 @@
 """Offline input and export validation; no CAD connection."""
+import sys
+from pathlib import Path
+sys.path.insert(0,str(Path(__file__).resolve().parents[1]/'fusion-360-mcp'/'scripts'))
+sys.path.insert(0,str(Path(__file__).resolve().parents[1]/'devtools'))
 import ast,json,tempfile,unittest,zipfile
 from pathlib import Path
 from contracts import geometry_expectations

@@ -1,4 +1,8 @@
 """Offline feature-contract tests; never connects to a CAD server."""
+import sys
+from pathlib import Path
+sys.path.insert(0,str(Path(__file__).resolve().parents[1]/'fusion-360-mcp'/'scripts'))
+sys.path.insert(0,str(Path(__file__).resolve().parents[1]/'devtools'))
 import ast
 import unittest
 from feature_recipes import RECIPES,validate,build_script

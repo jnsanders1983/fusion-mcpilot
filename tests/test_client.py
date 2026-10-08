@@ -1,7 +1,7 @@
 import ast, importlib.util, io, json, os, pathlib, tempfile, unittest
 from unittest.mock import patch
 import sys
-scripts=pathlib.Path(__file__).resolve().parent
+scripts=pathlib.Path(__file__).resolve().parents[1]/'fusion-360-mcp'/'scripts'
 sys.path.insert(0,str(scripts))
 from run_primitive import build_script
 from mcp_client import FusionClient, connection_settings

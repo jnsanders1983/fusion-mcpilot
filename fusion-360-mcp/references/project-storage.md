@@ -34,9 +34,11 @@ The installed skill is the runtime toolset. During development, keep one canonic
 source tree in local `work`, then deploy its verified contents to the installed
 folder and portable ZIP. The whole chat workspace also contains research, logs
 and models; it is not the publishable skill. Only the portable ZIP belongs
-in user-facing outputs. `scripts/package_skill.py` validates required fields,
-references, Python syntax, installed byte equality and ZIP contents. It excludes
-caches; it does not replace full YAML schema validation or live tests.
+in user-facing outputs. The repository-only `devtools/package_skill.py` validates
+required fields, shipped references, Python syntax and ZIP byte equality against
+an explicit release manifest. It rejects existing archive destinations and does
+not install the skill. Use the backup-aware repository installer separately.
+Packaging does not replace full YAML schema validation or live tests.
 
 ## Multi-body color/material printing
 

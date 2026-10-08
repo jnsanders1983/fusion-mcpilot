@@ -1,4 +1,8 @@
 """Contract tests for parametric layout limits and generated native scripts."""
+import sys
+from pathlib import Path
+sys.path.insert(0,str(Path(__file__).resolve().parents[1]/'fusion-360-mcp'/'scripts'))
+sys.path.insert(0,str(Path(__file__).resolve().parents[1]/'devtools'))
 import unittest,math
 from parametric_organizer import layout,build_script,variants_script
 

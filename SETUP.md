@@ -18,7 +18,7 @@ Native Fusion MCP tools are preferred. The optional fallback command runner need
 
 The primitive runner writes actions.jsonl and performance.csv in the chosen --log-dir (default a unique work/fusion-runs/run-<id> in the current working directory). Other helpers keep their documented compact run records. It separates MCP round-trip time, Fusion execution/verification, connection setup, and runner total. Assistant thinking, tool scheduling, and response-writing time are excluded from runner total. Errors are logged and modifying requests are never automatically replayed.
 
-To check the portable helper code without connecting to Fusion, run `python <installed-skill-folder>/scripts/self_test.py`. This tests parameter validation, safe script rendering, JSON/SSE handling, and no-replay error handling using mock responses. It writes only temporary test files.
+To check the helper code without connecting to Fusion, use a source checkout and run `python -B -m unittest discover -s tests -p 'test_*.py'` from its repository root. Offline tests use temporary files and mocked network responses; they are not shipped in the installed skill.
 
 ## Install on Windows
 

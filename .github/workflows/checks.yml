@@ -11,11 +11,10 @@ jobs:
         with:
           python-version: '3.13'
       - name: Offline regression tests
-        run: python -B -m unittest discover -s fusion-360-mcp/scripts -p '*test*.py'
+        run: python -B -m unittest discover -s tests -p 'test_*.py'
       - name: Portable installer checks
         run: |
           sh -n Install.sh
-          python -B -m unittest discover -s tests -p 'test_*.py'
           sh ./Install.sh --skill-directory "$RUNNER_TEMP/mcpilot-skills"
       - name: Validate portable package
-        run: python -B fusion-360-mcp/scripts/package_skill.py --package-root . --skill-name fusion-360-mcp --zip-path fusion-mcpilot.zip
+        run: python -B devtools/package_skill.py --package-root . --skill-name fusion-360-mcp --zip-path fusion-mcpilot.zip

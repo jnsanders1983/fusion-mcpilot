@@ -1,4 +1,8 @@
 """Local inventory, package hashes and evidence-based advisory applicability.
+import sys
+from pathlib import Path
+sys.path.insert(0,str(Path(__file__).resolve().parents[1]/'fusion-360-mcp'/'scripts'))
+sys.path.insert(0,str(Path(__file__).resolve().parents[1]/'devtools'))
 
 No uploads or automatic network requests. Advisory records are external reviewed
 data, not a permanent vulnerability database embedded in the skill.
@@ -51,9 +55,14 @@ def assess(data,advisories):
     return results
 
 
+def write_report(path, result):
+    with Path(path).open('x',encoding='utf-8') as report:
+        report.write(json.dumps(result,indent=2))
+
+
 def main():
     parser=argparse.ArgumentParser(description=__doc__)
-    parser.add_argument('--skill-dir',default=str(Path(__file__).resolve().parent.parent))
+    parser.add_argument('--skill-dir',default=str(Path(__file__).resolve().parents[1]/'fusion-360-mcp'))
     parser.add_argument('--advisories',help='External JSON ledger of independently reviewed exact-component advisories.')
     parser.add_argument('--report',required=True)
     args=parser.parse_args();result=inventory(args.skill_dir)
@@ -62,7 +71,7 @@ def main():
     assessed={row['component'] for row in result['advisory_assessments']}
     result['unassessed_components']=[row['name'] for row in result['components'] if row['name'] not in assessed]
     result['coverage']='Only supplied reviewed advisories; an empty list or absent match does not mean no vulnerabilities.'
-    Path(args.report).write_text(json.dumps(result,indent=2),encoding='utf-8')
+    write_report(args.report,result)
     print(json.dumps({'components':result['components'],'assessments':result['advisory_assessments'],'unassessed_components':result['unassessed_components'],'report':str(Path(args.report).resolve())},indent=2))
 
 if __name__=='__main__':main()
